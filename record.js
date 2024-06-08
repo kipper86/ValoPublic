@@ -65,7 +65,7 @@
     let fullStreamEloChange = latestRawEloThisStream - earliestRawEloThisStream;
     let mmrChange = mmrGains;
 
-    return `${playerName} is ${fullStreamEloChange >= 0 ? 'UP' : 'DOWN'} ${fullStreamEloChange}RR this stream and ${mmrGains >=0 ? 'gained' : 'lost'} ${mmrGains} rr last game. Currently ${winCountThisStream}W - ${lossCountThisStream}L - ${drawCountThisStream}D.`;
+    return `${playerName} is ${fullStreamEloChange >= 0 ? 'UP' : 'DOWN'} ${fullStreamEloChange}RR this stream and ${mmrGains >=0 ? 'gained' : 'lost'} &{mmrGains} rr last game. Currently ${winCountThisStream}W - ${lossCountThisStream}L - ${drawCountThisStream}D.`;
   } catch (e) {
     return `Failed to parse MMR history: ${e.message}: ${getMmrHistoryResponseJson}`.slice(0, 400);
   }
