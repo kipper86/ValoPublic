@@ -63,7 +63,7 @@
       }
     }
     let fullStreamEloChange = latestRawEloThisStream - earliestRawEloThisStream;
-    let mmrChange = mmrGains;
+    let mmr_change_to_last_game = mmrGains;
 
     return `${playerName} is ${fullStreamEloChange >= 0 ? 'UP' : 'DOWN'} ${fullStreamEloChange}RR this stream and ${mmrGains >= 0 ? 'Won' : 'Lost'} ${mmrGains}RR last game. Currently ${winCountThisStream}W - ${lossCountThisStream}L - ${drawCountThisStream}D.`;
   } catch (e) {
