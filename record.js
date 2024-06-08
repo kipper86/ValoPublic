@@ -21,6 +21,7 @@
     return getMmrHistoryResponseJson;
   }
 
+
   try {
     /** @type {{
       readonly data: ReadonlyArray<{
@@ -38,8 +39,11 @@
     let latestRawEloThisStream = null;
     let earliestMatchThisStream = Number.POSITIVE_INFINITY;
     let earliestRawEloThisStream = null;
+    let lastGameMmrChange = 0;
+
 
     for (const {date_raw: dateUnixS, mmr_change_to_last_game: mmrChange, elo: rawElo} of getMmrHistoryResponse.data) {
+      lastGameMmrChange = mmrChange;
       const date = new Date(dateUnixS * 1000);
       if (date >= streamStartDate) {
         if (mmrChange > 0) {
@@ -63,9 +67,8 @@
       }
     }
     let fullStreamEloChange = latestRawEloThisStream - earliestRawEloThisStream;
-    let mmrChange = mmrGains;
 
-    return `${playerName} is ${fullStreamEloChange >= 0 ? 'UP' : 'DOWN'} ${fullStreamEloChange}RR this stream and ${mmrGains >=0 ? 'gained' : 'lost'} &{mmrGains} rr last game. Currently ${winCountThisStream}W - ${lossCountThisStream}L - ${drawCountThisStream}D.`;
+    return `${playerName} is ${fullStreamEloChange >= 0 ? 'UP' : 'DOWN'} ${fullStreamEloChange}RR this stream and ${lastGameMmrChange >= 0 ? 'gained' : 'lost'} ${Math.abs(lastGameMmrChange)} rr last game. Currently ${winCountThisStream}W - ${lossCountThisStream}L - ${drawCountThisStream}D.`;
   } catch (e) {
     return `Failed to parse MMR history: ${e.message}: ${getMmrHistoryResponseJson}`.slice(0, 400);
   }
