@@ -63,8 +63,9 @@
       }
     }
     let fullStreamEloChange = latestRawEloThisStream - earliestRawEloThisStream;
+    let mmrChange = mmrGains;
 
-    return `${playerName} is ${fullStreamEloChange >= 0 ? 'UP' : 'DOWN'} ${fullStreamEloChange}RR this stream and ${mmrChange >= 0 ? 'Won' : 'Lost'} ${mmrChange}RR last game. Currently ${winCountThisStream}W - ${lossCountThisStream}L - ${drawCountThisStream}D.`;
+    return `${playerName} is ${fullStreamEloChange >= 0 ? 'UP' : 'DOWN'} ${fullStreamEloChange}RR this stream and ${mmrGains >= 0 ? 'Won' : 'Lost'} ${mmrGains}RR last game. Currently ${winCountThisStream}W - ${lossCountThisStream}L - ${drawCountThisStream}D.`;
   } catch (e) {
     return `Failed to parse MMR history: ${e.message}: ${getMmrHistoryResponseJson}`.slice(0, 400);
   }
