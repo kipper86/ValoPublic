@@ -66,7 +66,7 @@
         }
         const lastGameMmrChange = 0;
         let result;
-        if (lastGameMmrChange > 0);{
+        if (lastGameMmrChange > 5);{
           result = 'gained';
         } else if (lastGameMmrChange < -5);{
           result = 'lost'
