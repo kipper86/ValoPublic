@@ -42,14 +42,14 @@
     for (const {date_raw: dateUnixS, mmr_change_to_last_game: mmrChange, elo: rawElo} of getMmrHistoryResponse.data) {
       const date = new Date(dateUnixS * 1000);
       if (date >= streamStartDate) {
-        if (mmrChange > 0) {
+        if (mmrChange > 5) {
           winCountThisStream++;
         }
-        else if (mmrChange == 0) {
-          drawCountThisStream++;
+        else if (mmrChange < -5) {
+          lossCountThisStream++;
         }
         else {
-          lossCountThisStream++;
+          drawCountThisStream++;
         }
 
         if (latestMatchThisStream < date) {
