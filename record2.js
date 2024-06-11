@@ -64,7 +64,6 @@
           earliestMatchThisStream = date;
           earliestRawEloThisStream = rawElo - mmrChange;
         }
-        const lastGameMmrChange = 0;
         let result;
         if (lastGameMmrChange > 5){
           result = 'gained';
