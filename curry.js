@@ -2,7 +2,7 @@ export default async function handler(req, res) {
   const CACHE_DURATION = 120000; // 2 mins in ms
   const CACHE_KEY = 'valorant_mmr_cache';
   const PUUID = 'bb5b2ab7-9511-5715-a52f-533016f4f890';
-  const API_KEY = 'HDEV-df02f287-5663-4cd5-8dfe-38b26d206b7b';
+  const API_KEY = process.env.API_KEY;
   const API_URL = `https://api.henrikdev.xyz/valorant/v3/by-puuid/mmr/na/pc/${PUUID}?api_key=${API_KEY}`;
 
   // Simple in-memory cache (works on serverless if warmed up)
